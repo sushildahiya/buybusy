@@ -1,4 +1,4 @@
-import React, { createContext, useContext,  useState } from 'react'
+import React, { createContext, useContext,  useEffect,  useState } from 'react'
 
 const authContext = createContext()
 function useValueAuth(){
@@ -7,8 +7,21 @@ function useValueAuth(){
 function CustomAuthContext({children}) {
     const [authentication,setAuthentication] = useState()   
 
+    useEffect(()=>{
+        const user=localStorage.getItem('user')
+        if(user){
+          setAuthentication(JSON.parse(user))
+        }
+    }
+    ,[])
+
+    const handleAuthentication =(data)=>{
+      setAuthentication(data)
+      localStorage.setItem('user',JSON.stringify(data))
+    }
+
   return (
-    <authContext.Provider value={{authentication,setAuthentication}}>
+    <authContext.Provider value={{authentication,handleAuthentication}}>
         {children}
     </authContext.Provider>
   )

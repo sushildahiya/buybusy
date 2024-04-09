@@ -30,6 +30,16 @@ function CustomProductContext({ children }) {
     fetchData()
   },[authentication])
 
+  useEffect(()=>{
+    if(authentication){
+      (async function(){
+    const querySnapshot = await getDocs(collection(db, "userCarts", authentication.userId,'myCart'));
+    querySnapshot.forEach((doc) => {
+    console.log(doc.id, " => ", doc.data());
+      });
+      })()
+    }
+  },[authentication])
 
   useEffect(() => {
     (async function () {
@@ -72,6 +82,7 @@ function CustomProductContext({ children }) {
   const handleAddToCart=async (product)=>{
     const cartDocRef = collection(db, "userCarts", authentication.userId,'myCart');
     await addDoc (cartDocRef,{...product,quantity:1})
+
   }
 
   return (

@@ -10,14 +10,15 @@ function Signup() {
   const nameRef = useRef()
   const auth = getAuth()
   const navigate = useNavigate()
-  const {setAuthentication}= useValueAuth()
+  const {handleAuthentication}= useValueAuth()
   const handleSignUp =async ()=>{
     try{
        const response=await createUserWithEmailAndPassword(auth,emailRef.current.value,passwordRef.current.value)
-       setAuthentication({
-        userId: await response._tokenResponse.localId,
-        email: await response._tokenResponse.email, 
-        token: await response._tokenResponse.idToken
+       const data = await response._tokenResponse
+       handleAuthentication({
+        userId: data.localId,
+        email: data.email, 
+        token: data.idToken
       })
       navigate('/')
     }catch(error){

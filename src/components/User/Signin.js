@@ -5,7 +5,7 @@ import { NavLink, useNavigate, useNavigation } from 'react-router-dom'
 import { useValueAuth } from '../../context/authContext'
 
 function Signin() {
-  const {setAuthentication} = useValueAuth()
+  const {handleAuthentication} = useValueAuth()
   const [error,setError]=useState(null)
   const navigate = useNavigate()
   const emailRef = useRef()
@@ -14,10 +14,11 @@ function Signin() {
   const handleSign =async ()=>{
     try{
       const response=await signInWithEmailAndPassword(auth,emailRef.current.value,passwordRef.current.value)
-      setAuthentication({
-        userId: await response._tokenResponse.localId,
-        email: await response._tokenResponse.email, 
-        token: await response._tokenResponse.idToken
+      const data = await response._tokenResponse
+      handleAuthentication({
+        userId: data.localId,
+        email: data.email, 
+        token: data.idToken
       })
       navigate("/")
     }catch(error){
