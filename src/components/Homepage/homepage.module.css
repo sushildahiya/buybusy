@@ -1,0 +1,87 @@
+.container {
+  width: 60%;
+  margin: auto;
+  padding: auto;
+}
+
+.asideContainer {
+  background-color: #f0f0fc;
+  width: 225px;
+  height: 300px;
+  border-radius: 10px;
+  position: fixed;
+  left: 0;
+  top: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+align-items: center;
+}
+
+
+.mainContainer {
+  padding: .5em 0em;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.productContainer {
+  width:100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 5em .4em;
+}
+.cardContainer{
+    width:230px;
+    height:390px;
+    margin:.5em;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 1px rgb(168, 166, 166);
+    padding:.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cardContainer >img{
+    width:180px;
+    height:250px;
+}
+.cardContainer >p{
+    margin:0;
+    max-width: 250px;
+    height: 50px;
+    overflow: hidden;
+    text-wrap: wrap;
+    text-overflow: ellipsis;
+    color:#4d4a4a;
+    font-size: large;
+
+}
+.cardContainer> h2{
+    margin: .5em 0;
+    color:#535252;
+}
+
+.asideContainer>form{
+  text-align: center;
+}
+.categoryFilter{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.categoryFilter>div{
+  padding:.3em;
+}
+.categoryFilter>div>label{
+  padding-left: .2em;
+}
+.asideContainer h2{
+  margin:.2em;
+  padding:.2em;
+  color:#2b2255
+}
